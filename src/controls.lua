@@ -1,3 +1,5 @@
+---@diagnostic disable: trailing-space
+
 -- Area for player controls code
 -- prototype for  control scheme
 player1 = {}
@@ -8,7 +10,7 @@ player1.left  = "left"
 player1.jump  = "space"
 player1.speed = 64
 
-function movePlayer(dt)
+function controls(dt)
     if love.keyboard.isDown( player1.right ) then 
         x = x + player1.speed * dt
     end
