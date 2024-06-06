@@ -2,6 +2,7 @@
 
 require("src/graphic")
 require("src/controls")
+require("src/player")
 
 function love.load() 
     -- variables only for test
