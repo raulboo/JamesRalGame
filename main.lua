@@ -23,6 +23,10 @@ function love.load()
         addTile(0, 0, i, 16)
     end
 
+    for i = 0, 8 do
+        addTile(0, 0, i, 12)
+    end
+
     -- creating a player for test
    addPlayer(100, 100)
    addPlayer(200, 100)
@@ -31,14 +35,11 @@ end
 function love.update(dt)
     controls(dt) -- prototype where the all player moveents will be made ?
 
-    updateObject(playerTable)
-    updateObject(tileTable)
     detectTiles()
 
-    if collisionDetection(playerTable[1], playerTable[2]) then
-        os.execute("cls")
-        print("Colided")
-    end
+    updateObject(playerTable)
+    updateObject(tileTable)
+    
 end
 
 function love.draw()
