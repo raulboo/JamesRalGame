@@ -2,19 +2,33 @@
 
 -- Area for player controls code
 -- prototype for  control scheme
-player1 = {}
+control1 = {}
 
 -- Player 1 controls
-player1.right = "right"
-player1.left  = "left"
-player1.jump  = "space"
-player1.speed = 64
+control1.right = "right"
+control1.left  = "left"
+control1.down  = "down"
+control1.up    = "up"
+control1.jump  = "space"
 
 function controls(dt)
-    if love.keyboard.isDown( player1.right ) then 
-        x = x + player1.speed * dt
+    movement(dt, 1, control1)
+end
+
+function movement(dt, player, control)
+    if love.keyboard.isDown( control.right ) then 
+        playerTable[player].x = playerTable[player].x + playerTable[player].speed * dt
     end
-    if love.keyboard.isDown( player1.left ) then 
-        x = x - player1.speed * dt
+
+    if love.keyboard.isDown( control.left ) then 
+        playerTable[player].x = playerTable[player].x - playerTable[player].speed * dt
+    end
+
+    if love.keyboard.isDown( control.down ) then 
+        playerTable[player].y = playerTable[player].y + playerTable[player].speed * dt
+    end
+    
+    if love.keyboard.isDown( control.up ) then 
+        playerTable[player].y = playerTable[player].y - playerTable[player].speed * dt
     end
 end

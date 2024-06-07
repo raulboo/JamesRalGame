@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, lowercase-global
 
 love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -38,4 +38,10 @@ function endCanvas()
     local maxScaleY = love.graphics.getHeight() / canvas:getHeight()
     local scale = math.min(maxScaleX, maxScaleY)
     love.graphics.draw(canvas, love.graphics.getWidth() / 2, love.graphics.getHeight() / 2, 0, scale, scale, canvas:getWidth() / 2, canvas:getHeight() / 2)
+end
+
+function drawObject(object)
+    for i, v in pairs(object) do
+        v:draw()
+    end
 end
