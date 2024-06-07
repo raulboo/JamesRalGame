@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 function love.conf(t)
     t.window.title = "Untitled"         -- The window title (string)
     t.window.icon = nil                 -- Filepath to an image to use as the window's icon (string)

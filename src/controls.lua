@@ -1,4 +1,4 @@
----@diagnostic disable: trailing-space
+---@diagnostic disable: trailing-space, lowercase-global, undefined-global
 
 -- Area for player controls code
 -- prototype for  control scheme
