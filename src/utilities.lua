@@ -19,3 +19,13 @@ function collisionDetection(tableA, tableB)
             tableA.cy1 < tableB.cy2 and
             tableA.cy2 > tableB.cy1
 end
+
+function detectTiles()
+    for i1, v1 in ipairs(tileTable) do
+        for i, v in ipairs(playerTable) do
+            if collisionDetection(tileTable[i1], playerTable[i]) then
+                print("boing")
+            end
+        end
+    end
+end

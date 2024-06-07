@@ -6,17 +6,22 @@ require("src/player")
 require("src/utilities")
 require("src/tiles")
 
--- TODO: Need decide where store variables to control general environment properties like gravity, etc
--- TODO: We need to choose libraries or build code for scene change
+-- GLOBAL CONSTANTS --------------------------------
 
+TILE_SIZE = 16
+
+-- GLOBAL VARTIABLES --------------------------------
+
+Gravity = 0.2
 
 function love.load() 
      -- Load entire sprite sheet
     spriteSheet = love.graphics.newImage("images/spriteSheet.png")
 
     -- Crete tiles
-    addTile(1, 1, 1)
-
+    for i = 0, 32 do
+        addTile(0, 0, i, 16)
+    end
 
     -- creating a player for test
    addPlayer(100, 100)
@@ -27,6 +32,8 @@ function love.update(dt)
     controls(dt) -- prototype where the all player moveents will be made ?
 
     updateObject(playerTable)
+    updateObject(tileTable)
+    detectTiles()
 
     if collisionDetection(playerTable[1], playerTable[2]) then
         os.execute("cls")
