@@ -46,7 +46,6 @@ function love.update(dt)
 
     updateObject(playerTable)
     updateObject(tileTable)
-    
 end
 
 function love.draw()

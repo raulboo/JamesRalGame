@@ -13,7 +13,7 @@ function addPlayer(x, y)
         quad      = love.graphics.newQuad(0, 16, 16, 16, spriteSheet),  -- individual quad to draw the player
         speed     = 100,                                                -- Character move speed
         jump      = 350,                                                -- Jump force
-        collision = rect(x, y, x + TILE_SIZE, y + TILE_SIZE),
+        collision = rect(x, y, TILE_SIZE, TILE_SIZE),
 
         update = function(self, dt)
             self:physics()
@@ -21,6 +21,7 @@ function addPlayer(x, y)
         end,
 
         draw = function(self)
+            -- Code to flip image. Need make cleaner soon
             local fh
             local hOffset
             if self.flipH then
@@ -33,15 +34,14 @@ function addPlayer(x, y)
 
             love.graphics.draw(spriteSheet, self.quad, self.position.x, self.position.y, 0, fh, 1, hOffset)
 
-            -- Draw collission box
-            --love.graphics.rectangle("line", self.cx1, self.cy1, TILE_SIZE, TILE_SIZE)
+            love.graphics.rectangle("line", self.collision.position.x, self.collision.position.y, self.collision.width, self.collision.height)
         end,
 
         collissionBoxes = function(self)
             self.collision.position.x = self.position.x
             self.collision.position.y = self.position.y
-            self.collision.width      = self.collision.position.x + TILE_SIZE
-            self.collision.height     = self.collision.position.y + TILE_SIZE
+            self.collision.width      = TILE_SIZE
+            self.collision.height     = TILE_SIZE
         end,
 
         physics = function(self)

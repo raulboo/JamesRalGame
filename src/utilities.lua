@@ -14,10 +14,10 @@ function clearTable(table)
 end
 
 function collisionDetection(tableA, tableB)
-    return  tableA.collision.position.x < tableB.collision.width  and
-            tableA.collision.width      > tableB.collision.position.x      and
-            tableA.collision.position.y < tableB.collision.height and
-            tableA.collision.height     > tableB.collision.position.y
+    return  tableA.collision.position.x < tableB.collision.width  + tableB.collision.position.x and
+            tableA.collision.width + tableA.collision.position.x  > tableB.collision.position.x and
+            tableA.collision.position.y < tableB.collision.height + tableB.collision.position.y and
+            tableA.collision.height + tableA.collision.position.y > tableB.collision.position.y
 end
 
 function detectTiles()
