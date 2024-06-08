@@ -22,15 +22,17 @@ end
 
 function movement(dt, player, control)
     if love.keyboard.isDown( control.right ) then 
-        playerTable[player].x = playerTable[player].x + playerTable[player].speed * dt
+        playerTable[player].position.x = playerTable[player].position.x + playerTable[player].speed * dt
+        playerTable[player].flipH = false
     end
 
     if love.keyboard.isDown( control.left ) then 
-        playerTable[player].x = playerTable[player].x - playerTable[player].speed * dt
+        playerTable[player].position.x = playerTable[player].position.x - playerTable[player].speed * dt
+        playerTable[player].flipH = true
     end
 
     if love.keyboard.isDown( control.jump ) and playerTable[player].grounded == true then 
-        playerTable[player].dy = playerTable[player].dy - playerTable[player].jump * dt
+        playerTable[player].velocity.y = playerTable[player].velocity.y - playerTable[player].jump * dt
         playerTable[player].grounded = false
     end
 end

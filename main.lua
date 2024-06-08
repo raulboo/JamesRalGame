@@ -5,6 +5,7 @@ require("src/controls")
 require("src/player")
 require("src/utilities")
 require("src/tiles")
+require("src/geometry")
 
 -- GLOBAL CONSTANTS --------------------------------
 
@@ -24,8 +25,14 @@ function love.load()
     end
 
     for i = 0, 8 do
-        addTile(0, 0, i, 12)
+        addTile(0, 0, i + 3, 12)
     end
+
+    addTile(0, 0, 16, 10)
+    addTile(0, 0, 16, 11)
+    addTile(0, 0, 16, 12)
+    addTile(0, 0, 16, 13)
+    addTile(0, 0, 16, 14)
 
     -- creating a player for test
    addPlayer(100, 100)

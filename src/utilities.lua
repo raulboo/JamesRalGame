@@ -24,21 +24,19 @@ function detectTiles()
     for i1, v1 in ipairs(tileTable) do
         for i, v in ipairs(playerTable) do
 
-            -- Detect floor collission
-            while collisionDetection(tileTable[i1], playerTable[i]) and (playerTable[i].y - (TILE_SIZE / 2)) < tileTable[i1].y do
-                playerTable[i].dy = 0
-                playerTable[i].y =  math.floor(playerTable[i].y - 1)
-                playerTable[i].grounded = true
+            if collisionDetection(tileTable[i1], playerTable[i]) then
+                
+
+                if  playerTable[i].position.y + TILE_SIZE / 2 < tileTable[i1].position.y + TILE_SIZE / 2 then
+                    playerTable[i].velocity.y = 0
+                    playerTable[i].position.y =  math.floor(playerTable[i].position.y - 1)
+                    playerTable[i].grounded = true
+                    tileTable[i1].collisionBox = true
+                end
+
                 playerTable[i]:update(dt)
             end
-
-            -- Detect ceiling collision
-            while collisionDetection(tileTable[i1], playerTable[i]) and (playerTable[i].y - (TILE_SIZE / 2)) > tileTable[i1].y do
-                playerTable[i].dy = 0
-                playerTable[i].y =  math.floor(playerTable[i].y + 1)
-                playerTable[i]:update(dt)
-            end
-
         end
     end
 end
+
