@@ -14,10 +14,10 @@ function clearTable(table)
 end
 
 function collisionDetection(tableA, tableB)
-    return  tableA.cx1 < tableB.cx2 and
-            tableA.cx2 > tableB.cx1 and
-            tableA.cy1 < tableB.cy2 and
-            tableA.cy2 > tableB.cy1
+    return  tableA.collision.position.x < tableB.collision.width  and
+            tableA.collision.width      > tableB.collision.position.x      and
+            tableA.collision.position.y < tableB.collision.height and
+            tableA.collision.height     > tableB.collision.position.y
 end
 
 function detectTiles()
@@ -31,7 +31,6 @@ function detectTiles()
                     playerTable[i].velocity.y = 0
                     playerTable[i].position.y =  math.floor(playerTable[i].position.y - 1)
                     playerTable[i].grounded = true
-                    tileTable[i1].collisionBox = true
                 end
 
                 playerTable[i]:update(dt)

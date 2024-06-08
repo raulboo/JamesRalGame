@@ -6,18 +6,14 @@ playerTable = {}
 
 function addPlayer(x, y)
     table.insert(playerTable, {
-        position = verctor2d(x, y),
-        velocity = verctor2d(0, 0),
-        flipH    = false,
-        grounded = false,
-        quad     = love.graphics.newQuad(0, 16, 16, 16, spriteSheet),  -- individual quad to draw the player
-        speed    = 100,                                                -- Character move speed
-        jump     = 350,                                                -- Jump force
-        
-        cx1      = x,                                                  -- Collission: cx1 and cy1 are to left position
-        cy1      = y,
-        cx2      = x + TILE_SIZE,                                      -- cx2 is width of the collission box
-        cy2      = y + TILE_SIZE,                                      -- cy2 height of the collission box
+        position  = verctor2d(x, y),
+        velocity  = verctor2d(0, 0),
+        flipH     = false,
+        grounded  = false,
+        quad      = love.graphics.newQuad(0, 16, 16, 16, spriteSheet),  -- individual quad to draw the player
+        speed     = 100,                                                -- Character move speed
+        jump      = 350,                                                -- Jump force
+        collision = rect(x, y, x + TILE_SIZE, y + TILE_SIZE),
 
         update = function(self, dt)
             self:physics()
@@ -42,10 +38,10 @@ function addPlayer(x, y)
         end,
 
         collissionBoxes = function(self)
-            self.cx1 = self.position.x
-            self.cy1 = self.position.y + 1
-            self.cx2 = self.position.x + TILE_SIZE
-            self.cy2 = self.position.y + TILE_SIZE
+            self.collision.position.x = self.position.x
+            self.collision.position.y = self.position.y
+            self.collision.width      = self.collision.position.x + TILE_SIZE
+            self.collision.height     = self.collision.position.y + TILE_SIZE
         end,
 
         physics = function(self)
