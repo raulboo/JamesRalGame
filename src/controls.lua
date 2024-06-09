@@ -20,19 +20,21 @@ function controls(dt)
     movement(dt, 2, control2)
 end
 
-function movement(dt, player, control)
-    if love.keyboard.isDown( control.right ) then 
-        playerTable[player].position.x = playerTable[player].position.x + playerTable[player].speed * dt
-        playerTable[player].flipH = false
+function movement(dt, player_idx, control)
+    p = playerTable[player_idx] -- Current Player
+
+    if love.keyboard.isDown(control.right) then 
+        p.position.x = p.position.x + p.speed * dt
+        p.flipH = false
     end
 
     if love.keyboard.isDown( control.left ) then 
-        playerTable[player].position.x = playerTable[player].position.x - playerTable[player].speed * dt
-        playerTable[player].flipH = true
+        p.position.x = p.position.x - p.speed * dt
+        p.flipH = true
     end
 
-    if love.keyboard.isDown( control.jump ) and playerTable[player].grounded == true then 
-        playerTable[player].velocity.y = playerTable[player].velocity.y - playerTable[player].jump * dt
-        playerTable[player].grounded = false
+    if love.keyboard.isDown( control.jump ) and p.grounded == true then 
+        p.velocity.y = p.velocity.y - p.jump * dt
+        p.grounded = false
     end
 end
