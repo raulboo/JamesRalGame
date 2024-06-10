@@ -7,6 +7,8 @@ require("src/utilities")
 require("src/tiles")
 require("src/geometry")
 
+require("ecs")
+
 -- GLOBAL CONSTANTS --------------------------------
 
 TILE_SIZE = 16
@@ -14,6 +16,11 @@ TILE_SIZE = 16
 -- GLOBAL VARTIABLES --------------------------------
 
 Gravity = 0.2
+
+
+world = {}
+
+
 
 function love.load() 
      -- Load entire sprite sheet
@@ -37,6 +44,12 @@ function love.load()
     -- creating a player for test
    addPlayer(100, 100)
    addPlayer(200, 100)
+
+    table.insert(world, {
+        type   = "player",
+        pos    = {x = 120, y = 120},
+        sprite = love.graphics.newQuad(0, 16, 16, 16, spriteSheet)
+    })
 end
 
 function love.update(dt)
@@ -49,12 +62,22 @@ function love.update(dt)
 end
 
 function love.draw()
+    -- systems
+
+
     -- Every draw code need to be between startCanvas and endCanvas to adapt correct to the game pixel size.
     startCanvas({0.5, 0.5, 0.5, 1})
 
         drawObject(tileTable)
         drawObject(playerTable)
 
+        displaySprites(world)
+
     endCanvas()
 end
 
+displaySprites = system({"pos", "sprite"},
+    function(e)
+        love.graphics.draw(spriteSheet, e.sprite, e.pos.x, e.pos.y)
+    end
+)

@@ -121,6 +121,11 @@ Ideias para cartas modificadores de gameplay:
 - Todos os jogadores trocam de personagem
 - Controles invertidos
 - Pulo absurdo
+- Golpe especial += bumerangue
+- Golpe especial += rajadas de balas (ou outros padrões de balas)
+- Todos podem voar
+- Todos ficam gigantes (3x tamanho)
+- O chão é lava (ficar no chão causa dano)
 
 ### c. Powerups 
 
