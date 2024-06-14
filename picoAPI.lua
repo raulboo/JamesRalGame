@@ -1,0 +1,2 @@
+--function spr() end
+--function print() end
