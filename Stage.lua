@@ -43,7 +43,7 @@ function Stage:drawTiles()
             -- TODO: We should actually table:map the self.tiles in Stage.load, 
             -- the issue is that sprite 0 in Tiled is translated to Lua as 1, 1 as 2, an so on
             -- and 0 is reserved as the "transparent" tile
-            spr(sprite-1, x * TILE_SIZE, y * TILE_SIZE)
+            spr(sprite-1, x * TILE_SIZE, y * TILE_SIZE, rotation, 1, 1, 0, 0)
         end 
     end
 end
