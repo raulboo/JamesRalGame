@@ -4,7 +4,7 @@ local DebugSystems = {}
 DebugSystems.displayAllAabb = system({"pos","aabb"},
     function (e)
         local top_left = e.pos - (e.aabb*0.5)
-        love.graphics.rectangle(top_left.x, top_left.y, e.aabb.x, e.aabb.y)
+        love.graphics.rectangle("line",top_left.x, top_left.y, e.aabb.x, e.aabb.y)
     end
 )
 

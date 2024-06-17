@@ -12,7 +12,7 @@ LifeSystems.decay = system({"decay"},
 
 LifeSystems.die = system({"die"},
     function (e)
-        table.remove(world, e)
+        world:remove(e)
     end
 )
 

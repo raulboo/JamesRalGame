@@ -1,5 +1,7 @@
 return {
-    type   = "player",
+    type    = "player",
+    type_id = 001,
+
     pos    = nil,
     sprite = 64,
 
@@ -19,6 +21,11 @@ return {
     },
     jump = {
         speed = 30,
+    },
+    punch = {
+        force = Vec2(16,-1),
+        cooldown_total = 5,
+        cooldown = 0,
     },
 
     friction = {

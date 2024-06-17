@@ -88,4 +88,15 @@ PhysicsSystems.applyFriction = system({"move", "grounded", "friction"},
     end
 )
 
+PhysicsSystems.applyCollisionEffects = system({"collision_effects"},
+    function (e)
+        for _, e2 in pairs(world) do
+            if e2~=e and isBoxInBox(e.pos, e.aabb, e2.pos, e2.aabb) then 
+                local effect = e.collision_effects[e2.type_id]
+                if effect then effect(e, e2) end
+            end
+        end
+    end
+)
+
 return PhysicsSystems

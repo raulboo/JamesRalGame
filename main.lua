@@ -105,6 +105,7 @@ require("picoAPI")
 
 -- GLOBAL CONSTANTS --------------------------------
 
+DEBUG = true
 TILE_SIZE = 16
 Gravity = 0.2
 
@@ -114,6 +115,8 @@ math.randomseed(os.time())
 
 World = require("World")
 Stage = require("Stage")
+
+DebugSystems = require("debug.DebugSystems")
 
 Systems = {
     Render  = require("systems.RenderSystems"),
@@ -154,6 +157,10 @@ end
 function love.draw()
     startCanvas({0.5, 0.5, 0.5, 1})
 
+    if DEBUG then
+        if love.keyboard.isDown("p") then DebugSystems.displayAllAabb(world) end
+    end
+
     stage:drawTiles()
     Systems.Render.renderSprites(world)
 
@@ -161,6 +168,7 @@ function love.draw()
 end
 
 function love.update()
+
     Systems.Physics.moveActorX   (world)
     Systems.Physics.moveActorY   (world)
     Systems.Physics.pullGravity  (world)
@@ -169,6 +177,8 @@ function love.update()
     Systems.Input.walkPlayer     (world)
     Systems.Input.jumpPlayer     (world)
     Systems.Input.makePunchPlayer(world)
+
+    Systems.Physics.applyCollisionEffects(world)
 
     Systems.Life.decay           (world)
     Systems.Life.die             (world)
