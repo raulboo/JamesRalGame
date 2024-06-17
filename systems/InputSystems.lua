@@ -20,6 +20,7 @@ InputSystems.jumpPlayer = system({"move", "jump", "controls"},
     end
 )
 
+-- to be implemented
 InputSystems.makePunchPlayer = system({"move", "punch", "controls"},
     function(e)
         if love.keyboard.isDown(e.punch) then
