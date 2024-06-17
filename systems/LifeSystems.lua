@@ -15,3 +15,5 @@ LifeSystems.die = system({"die"},
         table.remove(world, e)
     end
 )
+
+return LifeSystems

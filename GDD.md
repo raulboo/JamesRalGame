@@ -12,8 +12,9 @@ Creator:
 - [3. Story, Setting and Locations](#3-story-setting-and-locations)
 - [4. Gameplay](#4-gameplay)
     - [a. Verbos Padrão (de todos os personagens)](#a-verbos-padrão-de-todos-os-personagens)
-    - [b. Cartas Modificadoras](#b-cartas-modificadoras)
-    - [c. Powerups](#c-powerups)
+    - [b. Efeitos Padrão](#b-efeitos-padrão)
+    - [c. Cartas Modificadoras](#c-cartas-modificadoras)
+    - [d. Powerups](#d-powerups)
 - [5. Characters](#5-characters)
 - [6. Level Design](#6-level-design)
 - [7. Menu Design](#7-menu-design)
@@ -93,6 +94,10 @@ Temas: steampunk, avioes, plantas, árvores,
 # 1. Dev Roadmap - 3 meses
 
 - 1º mês ALPHA = Lógica geral, movimento em 2d, multiplayer local, placeholder tiles e sprites, poderes e habilidades principais implementadas, 2 jogadores, efeitos sonoros placeholder 
+  - [x] Implementação dos verbos básicos
+  - [ ] Socos, Camera centrada, Morte e Respawn, Modificadores de Gameplay (mvp)
+  - [ ] Demais verbos básicos 
+
 - 2º mês BETA = Gameplay com rounds completos, mecanicas de cartas completas, 3 personagens jogáveis, 1 arena jogável, MVP, já é jogável e divertido, ciclos de animação completos para os 3 personagens, efeitos sonoros plenos, powerups
 - 3º mês RELEASE = Menus funcionais, música de fundo, polish, bug fixes, balanceamento, margem de erro pra completar o que falta
 
@@ -109,14 +114,25 @@ Estilo de Arte: SNES, resolução ~480x270, furry owo
 # 4. Gameplay
 
 ### a. Verbos Padrão (de todos os personagens)
-- Correr
-- Dash
-- Pulo
-- Pulo duplo
-- Golpe normal 
-- Golpe especial 
+- Correr         (→)             - walk, walk.accel, walk.max_speed
+- Dash           (←→)            - walk, walk.is_dashing, walk.dash_accel, walk.dash_max
+- Pulo           (↑ >5 frames)   - jump, grounded, jump.coyote_time_left, jump.frames, jump.speed
+- Hop            (↑ <5 frames)   - jump, grounded, jump.coyote_time_left, jump.frames, jump.hop_speed
+- Pulo duplo     (↑↑)            - jump, jump.doubles_left
+- Fast fall      (↓↑)            - fastfall, fastfall.speed
+- Golpe normal   (Z) 
+- Golpe especial (X)
 
-### b. Cartas Modificadoras
+### b. Efeitos Padrão
+- Gravity 
+- Falling speed   (max +vely) - move.max has to change if we're gonna implement fast fall
+- Ground friction
+- Air friction
+- Knockback
+- Hitstun
+
+
+### c. Cartas Modificadoras
 Ideias para cartas modificadores de gameplay:
 - Todos os jogadores trocam de personagem
 - Controles invertidos
@@ -127,7 +143,7 @@ Ideias para cartas modificadores de gameplay:
 - Todos ficam gigantes (3x tamanho)
 - O chão é lava (ficar no chão causa dano)
 
-### c. Powerups 
+### d. Powerups 
 
 # 5. Characters
 
