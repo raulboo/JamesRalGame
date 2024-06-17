@@ -158,7 +158,7 @@ function love.draw()
     startCanvas({0.5, 0.5, 0.5, 1})
 
     if DEBUG then
-        if love.keyboard.isDown("p") then DebugSystems.displayAllAabb(world) end
+        if love.keyboard.isDown("lshift") then DebugSystems.displayAllAabb(world) end
     end
 
     stage:drawTiles()
@@ -168,7 +168,6 @@ function love.draw()
 end
 
 function love.update()
-
     Systems.Physics.moveActorX   (world)
     Systems.Physics.moveActorY   (world)
     Systems.Physics.pullGravity  (world)
@@ -180,8 +179,10 @@ function love.update()
 
     Systems.Physics.applyCollisionEffects(world)
 
-    Systems.Life.decay           (world)
-    Systems.Life.die             (world)
+    Systems.Life.decay                 (world)
+    Systems.Life.deathOutsideBoudaries (world)
+    Systems.Life.respawn               (world)
+    Systems.Life.die                   (world)
 end
 
 

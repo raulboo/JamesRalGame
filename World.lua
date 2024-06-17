@@ -11,10 +11,11 @@ function World.new()
     })
 end 
 
-function World:spawn(label, spawn_point_or_x, y) 
-    local spawn_point = y and Vec2(spawn_point_or_x,y) or Vec2(spawn_point_or_x.x, spawn_point_or_x.y)
+function World:spawn(label_or_prototype, spawn_point_or_x, y) 
+    local spawn_point   = y and Vec2(spawn_point_or_x,y) or Vec2(spawn_point_or_x.x, spawn_point_or_x.y)
+    local is_label_mode = (type(label_or_prototype)=="string")
 
-    local new_entity = clone(require(ENTITY_LABEL_TABLE[label]))
+    local new_entity = is_label_mode and clone(require(ENTITY_LABEL_TABLE[label_or_prototype])) or clone(label_or_prototype)
     new_entity.pos  = spawn_point
     new_entity.uuid = _uuid 
     _uuid = _uuid + 1

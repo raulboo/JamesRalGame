@@ -50,7 +50,7 @@ end
 
 function Stage:getTileAt(x,y)
     local idx = (math.floor(x / TILE_SIZE)) + (self.size.x * math.floor(y / TILE_SIZE))
-    return self.tiles[idx+1]
+    return self.tiles[idx+1] or 0
 end
 
 --function Stage:getTilesAtArea(center, size) end
