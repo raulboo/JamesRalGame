@@ -6,8 +6,14 @@ local InputSystems = {}
 
 InputSystems.walkPlayer = system({"move", "walk", "controls"},
     function(e)
-        if love.keyboard.isDown(e.controls.walk_left)  then e.move.vel.x = e.move.vel.x - e.walk.accel  end
-        if love.keyboard.isDown(e.controls.walk_right) then e.move.vel.x = e.move.vel.x +  e.walk.accel end
+        if love.keyboard.isDown(e.controls.walk_left)  then 
+            e.move.vel.x = e.move.vel.x - e.walk.accel  
+            e.flipH = true
+        end
+        if love.keyboard.isDown(e.controls.walk_right) then 
+            e.move.vel.x = e.move.vel.x +  e.walk.accel 
+            e.flipH = false
+        end
     end
 )
 

@@ -67,10 +67,10 @@ function endCanvas()
     )
 end
 
-function spr(idx, x, y) 
+function spr(idx, x, y, r, sx, sy, ox, oy) 
     assert(_loaded_spritesheet and _spritesheet_map, "Tried calling spr() with no spritesheet loaded")
 
-    love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y)
+    love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y,  r, sx, sy, ox, oy)
 end
 
 --function pal() _loaded_spritesheet:replacePixels() end

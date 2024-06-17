@@ -4,6 +4,7 @@ return {
 
     pos    = nil,
     sprite = 64,
+    flipH  = false,
 
     grav = 0.2,
 
