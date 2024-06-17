@@ -99,24 +99,28 @@ local function _test(foo) return foo+1 end
 
 ----------------------------------------------------
 
-require("legacy.graphic")
-require("legacy.controls")
-require("legacy.player")
-require("legacy.utilities")
-require("legacy.tiles")
-require("legacy.geometry")
-
 require("ecs")
 require("utilities")
+require("picoAPI")
 
 -- GLOBAL CONSTANTS --------------------------------
 
 TILE_SIZE = 16
+Gravity = 0.2
+
+math.randomseed(os.time())
 
 -- MODULES
 
 World = require("World")
 Stage = require("Stage")
+
+Systems = {
+    Render  = require("systems.RenderSystems"),
+    Physics = require("systems.PhysicsSystems"),
+    Input   = require("systems.InputSystems"),
+    Life    = require("systems.LifeSystems"),
+}
 
 --------------------------------
 
@@ -124,6 +128,55 @@ world = World.new()
 stage = nil
 
 
+function love.load()
+    loadPicoSpritesheet("images/spriteSheet.png", TILE_SIZE, TILE_SIZE)
+    stage = Stage.load("test")
+
+    local p1 = world:spawn("test_player", pickRandom(stage.respawn_points))
+    p1.controls = {
+        walk_left  = "left",
+        walk_right = "right",
+        jump       = "up",
+        punch      = ",",
+        special    = "."
+    }
+
+    local p2 = world:spawn("test_player", pickRandom(stage.respawn_points))
+    p2.controls = {
+        walk_left  = "a",
+        walk_right = "d",
+        jump       = "w",
+        punch      = "f",
+        special    = "g"
+    }
+end
+
+function love.draw()
+    startCanvas({0.5, 0.5, 0.5, 1})
+
+    stage:drawTiles()
+    Systems.Render.renderSprites(world)
+
+    endCanvas()
+end
+
+function love.update()
+    Systems.Physics.moveActorX   (world)
+    Systems.Physics.moveActorY   (world)
+    Systems.Physics.pullGravity  (world)
+    Systems.Physics.applyFriction(world)
+
+    Systems.Input.walkPlayer     (world)
+    Systems.Input.jumpPlayer     (world)
+    Systems.Input.makePunchPlayer(world)
+
+    Systems.Life.decay           (world)
+    Systems.Life.die             (world)
+end
+
+
+-------------------------------------------------------------------------------------------
+--[[
 function love.load() 
      -- Load entire sprite sheet
     spriteSheet = love.graphics.newImage("images/spriteSheet.png")
@@ -164,8 +217,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    -- systems
-
+    stage:drawTiles()
 
     -- Every draw code need to be between startCanvas and endCanvas to adapt correct to the game pixel size.
     startCanvas({0.5, 0.5, 0.5, 1})
@@ -183,3 +235,4 @@ displaySprites = system({"pos", "sprite"},
         love.graphics.draw(spriteSheet, e.sprite, e.pos.x, e.pos.y)
     end
 )
+]]--

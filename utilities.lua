@@ -4,7 +4,10 @@ function Vec2(x,y)
     setmetatable(v, {
         __add = function(v1,v2) return Vec2(v1.x+v2.x, v1.y+v2.y) end, 
         __sub = function(v1,v2) return Vec2(v1.x-v2.x, v1.y-v2.y) end,
-        __mul = function(v1,v2) return Vec2(v1.x*v2.x, v1.y*v2.y) end,
+        __mul = function(v1,v2)
+			if type(v2)=="number" then return Vec2(v1.x*v2, v1.y*v2)     -- vector * number
+			else 					   return Vec2(v1.x*v2.x, v1.y*v2.y) end -- vector * vector
+		end,
         __tostring = function(v) return "("..v.x..","..v.y..")" end,
     })
     return v
@@ -44,5 +47,32 @@ function clone(tbl)
 			cp[k]=v
 		end
 	end
-	return cp
+	return setmetatable(cp, getmetatable(tbl))
+end
+
+-- Basically applies the function "f" to all elements of the table
+function tableMap(table, f)
+	local new_table = {}
+	for i,v in ipairs(table) do
+		new_table[i] = f(v)
+	end
+	return new_table
+end
+
+function pickRandom(table)
+	return table[math.random(#table)]
+end
+
+function round(n) 
+	if (n % 1)>0.5 then 
+		return math.ceil(n)
+	else 
+		return math.floor(n)
+	end 
+end
+
+-- lazyest implementation ever
+function mid(a,b,c)
+	return math.max(math.min(a,b), math.min(b,c), math.min(a,c))
+	--return (table.sort{a,b,c})[2]
 end
