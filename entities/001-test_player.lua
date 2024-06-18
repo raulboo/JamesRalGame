@@ -5,6 +5,7 @@ return {
     pos       = nil,
     sprite    = 64,
     drawState = "grounded",
+    punchSpriteCountdown = 0,
     flipH  = false,
 
     grav = 0.2,

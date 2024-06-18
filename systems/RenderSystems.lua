@@ -8,22 +8,22 @@ local frame = 0
 RenderSystems.renderSprites = system({"pos", "sprite"},
     function(e)
         
-        if e.drawState == "grounded" then
+        if e.drawState == "grounded" and e.punchSpriteCountdown < 0 then
             e.sprite = 64 + math.floor(frame % 7)
             frame = frame + 0.1
         end
-        if e.drawState == "walking" and e.grounded then
+        if e.drawState == "walking" and e.grounded and e.punchSpriteCountdown < 0 then
             e.sprite = 73 + math.floor(frame % 4)
             frame = frame + 0.1
         end
-        if e.drawState == "air" and e.move.vel.y < 0 then
+        if e.drawState == "air" and e.move.vel.y < 0 and e.punchSpriteCountdown < 0 then
                 e.sprite = 71
         end
-        if e.drawState == "air" and e.move.vel.y > 0 then
+        if e.drawState == "air" and e.move.vel.y > 0 and e.punchSpriteCountdown < 0 then
             e.sprite = 72
         end
         if e.drawState == "punch" then
-            e.sprite = 74
+            e.sprite = 77
         end
         
 

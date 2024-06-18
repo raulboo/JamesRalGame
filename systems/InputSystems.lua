@@ -32,11 +32,13 @@ InputSystems.jumpPlayer = system({"move", "jump", "controls"},
 -- to be implemented
 InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
     function(e)
+        e.punchSpriteCountdown = e.punchSpriteCountdown - 1
+
         if love.keyboard.isPressed(e.controls.punch) and e.punch.cooldown==0 then
             local direction = Vec2(e.move.vel.x/math.abs(e.move.vel.x), love.keyboard.isDown(e.controls.jump) and -1 or 0)
 
             local punchbox   = nil
-            local punshReach = 8 -- a punch reach this distance from the character
+            local punshReach = 4 -- a punch reach this distance from the character
             local boxHeight  = 4 -- negative go down
 
             if e.flipH then
@@ -48,6 +50,7 @@ InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
             punchbox.owner  = e
             punchbox.move   = e.move
             e.drawState     = "punch"
+            e.punchSpriteCountdown = 7
 
             e.punch.cooldown = e.punch.cooldown_total
 
