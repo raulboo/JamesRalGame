@@ -76,3 +76,10 @@ function mid(a,b,c)
 	return math.max(math.min(a,b), math.min(b,c), math.min(a,c))
 	--return (table.sort{a,b,c})[2]
 end
+
+-- Animation function
+local frame = 0
+function animation(entity, startFrame, EndFrame, frameSpeed)
+	entity.sprite = startFrame + math.floor(frame % (EndFrame - startFrame))
+	frame = frame + frameSpeed
+end

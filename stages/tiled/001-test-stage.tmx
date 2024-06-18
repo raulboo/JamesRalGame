@@ -3,7 +3,9 @@
  <editorsettings>
   <export target="../001-test-stage.lua" format="lua"/>
  </editorsettings>
- <tileset firstgid="1" source="GlobalTileset.tsx"/>
+ <tileset firstgid="1" name="GlobalTileset" tilewidth="16" tileheight="16" tilecount="4096" columns="64">
+  <image source="../../images/spriteSheet.png" width="1024" height="1024"/>
+ </tileset>
  <layer id="1" name="Test Stage" width="30" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,962,962,0,0,0,0,

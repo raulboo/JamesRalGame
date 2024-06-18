@@ -3,18 +3,15 @@ require"ecs"
 local RenderSystems = {}
 
 rotation = 0
-local frame = 0
 
 RenderSystems.renderSprites = system({"pos", "sprite"},
     function(e)
         
         if e.drawState == "grounded" and e.punchSpriteCountdown < 0 then
-            e.sprite = 64 + math.floor(frame % 7)
-            frame = frame + 0.1
+            animation(e, 64, 71, 0.1)
         end
         if e.drawState == "walking" and e.grounded and e.punchSpriteCountdown < 0 then
-            e.sprite = 73 + math.floor(frame % 4)
-            frame = frame + 0.1
+            animation(e, 73, 75, 0.1)
         end
         if e.drawState == "air" and e.move.vel.y < 0 and e.punchSpriteCountdown < 0 then
                 e.sprite = 71
