@@ -19,7 +19,7 @@ InputSystems.walkPlayer = system({"move", "walk", "controls"},
 
 InputSystems.jumpPlayer = system({"move", "jump", "controls"},
     function(e)
-        if e.grounded and love.keyboard.isDown(e.controls.jump) then
+        if e.grounded and love.keyboard.isPressed(e.controls.jump) then
             e.move.vel.y = e.move.vel.y - e.jump.speed
             e.grounded   = false
         end
@@ -29,7 +29,7 @@ InputSystems.jumpPlayer = system({"move", "jump", "controls"},
 -- to be implemented
 InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
     function(e)
-        if love.keyboard.isDown(e.controls.punch) and e.punch.cooldown==0 then
+        if love.keyboard.isPressed(e.controls.punch) and e.punch.cooldown==0 then
             local direction = Vec2(e.move.vel.x/math.abs(e.move.vel.x), love.keyboard.isDown(e.controls.jump) and -1 or 0)
 
             local punchbox   = nil

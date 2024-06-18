@@ -102,6 +102,7 @@ local function _test(foo) return foo+1 end
 require("ecs")
 require("utilities")
 require("picoAPI")
+require("input")
 
 -- GLOBAL CONSTANTS --------------------------------
 
