@@ -104,6 +104,10 @@ require("utilities")
 require("picoAPI")
 require("input")
 
+-- GLOBAL VARIABLES --------------------------------
+
+deltaTime = nil
+
 -- GLOBAL CONSTANTS --------------------------------
 
 DEBUG = true
@@ -179,6 +183,8 @@ function love.draw()
 end
 
 function love.update(dt)
+    deltaTime = dt
+
     Systems.Physics.moveActorX   (world)
     Systems.Physics.moveActorY   (world)
     Systems.Physics.pullGravity  (world)

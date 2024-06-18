@@ -11,19 +11,19 @@ return {
     grav = 0.2,
 
     move = { 
-        vel       = Vec2(0,0),
-        max_vel	  = Vec2(3,5),
-        remainder = Vec2(0,0),
+        vel       = Vec2(0, 0),
+        max_vel	  = Vec2(3, 5),
+        remainder = Vec2(0, 0),
     },
 
     -- axis-aligned bounding-box (hitbox size, centered on e.pos)
     aabb = Vec2(16,16),
 
     walk = {
-        accel = 1,
+        accel = 40,
     },
     jump = {
-        speed = 30,
+        speed = 300,
     },
     punch = {
         force = Vec2(16,-1),

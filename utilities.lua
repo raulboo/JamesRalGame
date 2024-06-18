@@ -78,8 +78,10 @@ function mid(a,b,c)
 end
 
 -- Animation function
-local frame = 0
-function animation(entity, startFrame, EndFrame, frameSpeed)
-	entity.sprite = startFrame + math.floor(frame % (EndFrame - startFrame))
-	frame = frame + frameSpeed
+animation = {}
+animation.frame = 0
+
+function animationPlayer(entity, startFrame, EndFrame, frameSpeed)
+	entity.sprite = startFrame + math.floor(animation.frame % (EndFrame - startFrame))
+	animation.frame = animation.frame + frameSpeed
 end

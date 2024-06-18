@@ -7,12 +7,12 @@ local InputSystems = {}
 InputSystems.walkPlayer = system({"move", "walk", "controls"},
     function(e)
         if love.keyboard.isDown(e.controls.walk_left)  then
-            e.move.vel.x = e.move.vel.x - e.walk.accel
+            e.move.vel.x = e.move.vel.x - e.walk.accel * deltaTime
             e.flipH     = true
             if e.grounded then e.drawState = "walking" end
         end
         if love.keyboard.isDown(e.controls.walk_right) then
-            e.move.vel.x = e.move.vel.x +  e.walk.accel 
+            e.move.vel.x = e.move.vel.x +  e.walk.accel  * deltaTime
             e.flipH     = false
             if e.grounded then e.drawState = "walking" end
         end
@@ -22,7 +22,7 @@ InputSystems.walkPlayer = system({"move", "walk", "controls"},
 InputSystems.jumpPlayer = system({"move", "jump", "controls"},
     function(e)
         if e.grounded and love.keyboard.isPressed(e.controls.jump) then
-            e.move.vel.y = e.move.vel.y - e.jump.speed
+            e.move.vel.y = e.move.vel.y - e.jump.speed * deltaTime
             e.grounded   = false
             e.drawState  = "air"
             sound.jump:play()

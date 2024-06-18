@@ -8,10 +8,10 @@ RenderSystems.renderSprites = system({"pos", "sprite"},
     function(e)
         
         if e.drawState == "grounded" and e.punchSpriteCountdown < 0 then
-            animation(e, 64, 71, 0.1)
+            animationPlayer(e, 64, 71, 0.1)
         end
         if e.drawState == "walking" and e.grounded and e.punchSpriteCountdown < 0 then
-            animation(e, 73, 75, 0.1)
+            animationPlayer(e, 73, 75, 0.1)
         end
         if e.drawState == "air" and e.move.vel.y < 0 and e.punchSpriteCountdown < 0 then
                 e.sprite = 71
