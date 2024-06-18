@@ -156,7 +156,7 @@ function love.load()
 end
 
 function love.draw()
-    startCanvas({0.5, 0.5, 0.5, 1})
+    startCanvas({0.0, 0.0, 0.0, 1})
 
     if DEBUG then
         if love.keyboard.isDown("lshift") then DebugSystems.displayAllAabb(world) end
