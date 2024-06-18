@@ -27,16 +27,19 @@ InputSystems.jumpPlayer = system({"move", "jump", "controls"},
 )
 
 -- to be implemented
-InputSystems.makePunchPlayer = system({"move", "punch", "controls"},
+InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
     function(e)
         if love.keyboard.isDown(e.controls.punch) and e.punch.cooldown==0 then
             local direction = Vec2(e.move.vel.x/math.abs(e.move.vel.x), love.keyboard.isDown(e.controls.jump) and -1 or 0)
 
-            local punchbox = nil
+            local punchbox   = nil
+            local punshReach = 8 -- a punch reach this distance from the character
+            local boxHeight  = 4 -- negative go down
+
             if e.flipH then
-                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 - 8, e.pos.y + direction.y * 8 + 4)
+                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 - punshReach, e.pos.y + direction.y * 8 + boxHeight)
             else
-                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 + 8, e.pos.y + direction.y * 8 + 4)
+                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 + punshReach, e.pos.y + direction.y * 8 + boxHeight)
             end
             punchbox.force  = e.punch.force * Vec2(direction.x,1)
             punchbox.owner  = e
