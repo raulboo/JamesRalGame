@@ -143,9 +143,12 @@ function love.load()
     -- Load Sounds
     sound = {}
     sound.jump  = love.audio.newSource("sound/jump.wav", "static")
+    
     sound.punch = love.audio.newSource("sound/punch.wav", "static")
-    -- Hit sound still not added because hit is tied to collission to blocks
-    sound.hit = love.audio.newSource("sound/hit.wav", "static")     
+    sound.punch:setVolume(0.5)
+
+    sound.hurt = love.audio.newSource("sound/hurt.wav", "static")   
+    sound.hurt:setVolume(0.4)
 
     -- Load players
     local p1 = world:spawn("test_player", pickRandom(stage.respawn_points))
@@ -156,6 +159,7 @@ function love.load()
         punch      = ",",
         special    = "."
     }
+    p1.player_controlling = 1
 
     local p2 = world:spawn("test_player", pickRandom(stage.respawn_points))
     p2.controls = {
@@ -165,6 +169,7 @@ function love.load()
         punch      = "f",
         special    = "g"
     }
+    p1.player_controlling = 2
 end
 
 function love.draw()
@@ -176,7 +181,7 @@ function love.draw()
 
     stage:drawTiles()
     Systems.Render.renderSprites(world)
-    --Systems.Render.renderCollision(world)
+    Systems.Render.renderCollision(world)
 
     endCanvas()
     love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 1, 1)

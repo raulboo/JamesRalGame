@@ -39,7 +39,7 @@ InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
             local direction = Vec2(e.move.vel.x/math.abs(e.move.vel.x), love.keyboard.isDown(e.controls.jump) and -1 or 0)
 
             local punchbox   = nil
-            local punshReach = 4 -- a punch reach this distance from the character
+            local punshReach = 2 -- a punch reach this distance from the character
             local boxHeight  = 4 -- negative go down
 
             if e.flipH then
