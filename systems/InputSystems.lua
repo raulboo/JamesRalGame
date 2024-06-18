@@ -6,12 +6,12 @@ local InputSystems = {}
 
 InputSystems.walkPlayer = system({"move", "walk", "controls"},
     function(e)
-        if love.keyboard.isDown(e.controls.walk_left)  then 
-            e.move.vel.x = e.move.vel.x - e.walk.accel  
+        if love.keyboard.isDown(e.controls.walk_left)  then
+            e.move.vel.x = e.move.vel.x - e.walk.accel
             e.flipH     = true
             if e.grounded then e.drawState = "walking" end
         end
-        if love.keyboard.isDown(e.controls.walk_right) then 
+        if love.keyboard.isDown(e.controls.walk_right) then
             e.move.vel.x = e.move.vel.x +  e.walk.accel 
             e.flipH     = false
             if e.grounded then e.drawState = "walking" end
@@ -25,6 +25,7 @@ InputSystems.jumpPlayer = system({"move", "jump", "controls"},
             e.move.vel.y = e.move.vel.y - e.jump.speed
             e.grounded   = false
             e.drawState  = "air"
+            sound.jump:play()
         end
     end
 )
@@ -46,10 +47,11 @@ InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
             else
                 punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 + punshReach, e.pos.y + direction.y * 8 + boxHeight)
             end
-            punchbox.force  = e.punch.force * Vec2(direction.x,1)
+            punchbox.force  = e.punch.force * Vec2(direction.x, 1)
             punchbox.owner  = e
             punchbox.move   = e.move
             e.drawState     = "punch"
+            sound.punch:play()
             e.punchSpriteCountdown = 7
 
             e.punch.cooldown = e.punch.cooldown_total

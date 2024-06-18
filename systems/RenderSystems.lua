@@ -22,7 +22,6 @@ RenderSystems.renderSprites = system({"pos", "sprite"},
         if e.drawState == "punch" then
             e.sprite = 77
         end
-        
 
         if e.flipH == false then
             spr(e.sprite, e.pos.x - TILE_SIZE/2, e.pos.y - TILE_SIZE/2 + 1, rotation, 1, 1, 0, 0) 
