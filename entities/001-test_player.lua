@@ -2,8 +2,9 @@ return {
     type    = "player",
     type_id = 001,
 
-    pos    = nil,
-    sprite = 64,
+    pos       = nil,
+    sprite    = 64,
+    drawState = "grounded",
     flipH  = false,
 
     grav = 0.2,

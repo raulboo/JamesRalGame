@@ -64,7 +64,8 @@ PhysicsSystems.moveActorY = system({"pos", "move", "aabb"},
                 if stage:isSolidInArea(e.pos + Vec2(0,1), e.aabb) then 
                     e.move.vel.y = 0
                     dy = 0
-                    e.grounded = true
+                    e.grounded  = true
+                    e.drawState = "grounded"
                 else
                     e.pos.y = e.pos.y + 1
                     dy = dy - 1

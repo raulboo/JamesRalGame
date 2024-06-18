@@ -164,7 +164,7 @@ function love.draw()
 
     stage:drawTiles()
     Systems.Render.renderSprites(world)
-    Systems.Render.renderCollision(world)
+    --Systems.Render.renderCollision(world)
 
     endCanvas()
 end

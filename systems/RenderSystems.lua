@@ -3,9 +3,30 @@ require"ecs"
 local RenderSystems = {}
 
 rotation = 0
+local frame = 0
+
 RenderSystems.renderSprites = system({"pos", "sprite"},
-    function(e) 
-        -- IMPORTANT: sprite was not touching ground even if is touching the bottom of the cell i nthe image then I added '+ 1' to e.pos.y to fix
+    function(e)
+        
+        if e.drawState == "grounded" then
+            e.sprite = 64 + math.floor(frame % 7)
+            frame = frame + 0.1
+        end
+        if e.drawState == "walking" and e.grounded then
+            e.sprite = 73 + math.floor(frame % 4)
+            frame = frame + 0.1
+        end
+        if e.drawState == "air" and e.move.vel.y < 0 then
+                e.sprite = 71
+        end
+        if e.drawState == "air" and e.move.vel.y > 0 then
+            e.sprite = 72
+        end
+        if e.drawState == "punch" then
+            e.sprite = 74
+        end
+        
+
         if e.flipH == false then
             spr(e.sprite, e.pos.x - TILE_SIZE/2, e.pos.y - TILE_SIZE/2 + 1, rotation, 1, 1, 0, 0) 
         else
