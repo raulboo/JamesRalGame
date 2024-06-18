@@ -136,6 +136,14 @@ function love.load()
     loadPicoSpritesheet("images/spriteSheet.png", TILE_SIZE, TILE_SIZE)
     stage = Stage.load("test")
 
+    -- Load Sounds
+    sound = {}
+    sound.jump  = love.audio.newSource("sound/jump.wav", "static")
+    sound.punch = love.audio.newSource("sound/punch.wav", "static")
+    -- Hit sound still not added because hit is tied to collission to blocks
+    sound.hit = love.audio.newSource("sound/hit.wav", "static")     
+
+    -- Load players
     local p1 = world:spawn("test_player", pickRandom(stage.respawn_points))
     p1.controls = {
         walk_left  = "left",
@@ -156,7 +164,7 @@ function love.load()
 end
 
 function love.draw()
-    startCanvas({0.0, 0.0, 0.0, 1})
+    startCanvas({0.0, 0.0, 0.0, 1}) -- Color used to clean background
 
     if DEBUG then
         if love.keyboard.isDown("lshift") then DebugSystems.displayAllAabb(world) end
@@ -167,16 +175,17 @@ function love.draw()
     --Systems.Render.renderCollision(world)
 
     endCanvas()
+    love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 1, 1)
 end
 
-function love.update()
+function love.update(dt)
     Systems.Physics.moveActorX   (world)
     Systems.Physics.moveActorY   (world)
     Systems.Physics.pullGravity  (world)
     Systems.Physics.applyFriction(world)
 
     Systems.Input.walkPlayer     (world)
-    Systems.Input.jumpPlayer     (world)
+    Systems.Input.jumpPlayer     (world, dt)
     Systems.Input.makePunchPlayer(world)
 
     Systems.Physics.applyCollisionEffects(world)
@@ -186,66 +195,3 @@ function love.update()
     Systems.Life.respawn               (world)
     Systems.Life.die                   (world)
 end
-
-
--------------------------------------------------------------------------------------------
---[[
-function love.load() 
-     -- Load entire sprite sheet
-    spriteSheet = love.graphics.newImage("images/spriteSheet.png")
-
-    -- Crete tiles
-    for i = 0, 32 do
-        addTile(0, 0, i, 16)
-    end
-
-    for i = 0, 8 do
-        addTile(0, 0, i + 3, 12)
-    end
-
-    addTile(0, 0, 16, 10)
-    addTile(0, 0, 16, 11)
-    addTile(0, 0, 16, 12)
-    addTile(0, 0, 16, 13)
-    addTile(0, 0, 16, 14)
-
-    -- creating a player for test
-   addPlayer(100, 100)
-   addPlayer(200, 100)
-
-    table.insert(world, {
-        type   = "player",
-        pos    = {x = 120, y = 120},
-        sprite = love.graphics.newQuad(0, 16, 16, 16, spriteSheet)
-    })
-end
-
-function love.update(dt)
-    controls(dt) -- prototype where the all player moveents will be made ?
-
-    detectTiles()
-
-    updateObject(playerTable)
-    updateObject(tileTable)
-end
-
-function love.draw()
-    stage:drawTiles()
-
-    -- Every draw code need to be between startCanvas and endCanvas to adapt correct to the game pixel size.
-    startCanvas({0.5, 0.5, 0.5, 1})
-
-        drawObject(tileTable)
-        drawObject(playerTable)
-
-        displaySprites(world)
-
-    endCanvas()
-end
-
-displaySprites = system({"pos", "sprite"},
-    function(e)
-        love.graphics.draw(spriteSheet, e.sprite, e.pos.x, e.pos.y)
-    end
-)
-]]--
