@@ -11,7 +11,12 @@ RenderSystems.renderSprites = system({"pos", "sprite"},
         else
             spr(e.sprite, e.pos.x - TILE_SIZE/2, e.pos.y - TILE_SIZE/2 + 1, rotation, -1, 1, TILE_SIZE, 0) 
         end
-        rotation = rotation + 0.03
+    end
+)
+
+RenderSystems.renderCollision = system({"pos", "aabb"},
+    function(e)
+        love.graphics.rectangle("line", e.pos.x - TILE_SIZE / 2, e.pos.y - TILE_SIZE / 2, e.aabb.x, e.aabb.y)
     end
 )
 

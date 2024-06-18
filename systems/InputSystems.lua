@@ -32,7 +32,12 @@ InputSystems.makePunchPlayer = system({"move", "punch", "controls"},
         if love.keyboard.isDown(e.controls.punch) and e.punch.cooldown==0 then
             local direction = Vec2(e.move.vel.x/math.abs(e.move.vel.x), love.keyboard.isDown(e.controls.jump) and -1 or 0)
 
-            local punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x*2, e.pos.y + direction.y*8)
+            local punchbox = nil
+            if e.flipH then
+                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 - 8, e.pos.y + direction.y * 8 + 4)
+            else
+                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 + 8, e.pos.y + direction.y * 8 + 4)
+            end
             punchbox.force  = e.punch.force * Vec2(direction.x,1)
             punchbox.owner  = e
             punchbox.move   = e.move
