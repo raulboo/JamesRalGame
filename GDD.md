@@ -142,6 +142,7 @@ Ideias para cartas modificadores de gameplay:
 - Todos podem voar
 - Todos ficam gigantes (3x tamanho)
 - O chão é lava (ficar no chão causa dano)
+- Fase no escuro (apenas players e entities emitem uma luz de curto alcance)
 
 ### d. Powerups 
 

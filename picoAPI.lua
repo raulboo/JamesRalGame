@@ -91,6 +91,26 @@ function sfx(label)
     _sfx_list[label]:play()
 end
 
+function pal()
+    shader = love.graphics.newShader( -- load the shader
+    [[
+    //Fragment shader
+    uniform sampler2D ColorTable; // 1 x 16 pixels
+    uniform sampler2D MyIndexTexture;
+    varying vec2 TexCoord0;
+
+    vec4 effect( vec4 color, Image MyIndexTexture, vec2 TexCoord0, vec2 screen_coords ){
+    //What color do we want to index?
+    vec4 myindex = texture2D(MyIndexTexture, TexCoord0);
+    //Do a dependency texture read
+    vec4 texel = texture2D(ColorTable, myindex.xy);
+    return texel;   //Output the color
+    }
+    ]] )
+end
+
+
+
 --function print() end
 
 

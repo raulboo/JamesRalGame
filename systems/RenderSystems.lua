@@ -12,7 +12,7 @@ RenderSystems.renderSprites = system({"pos", "sprite"},
             animationPlayer(e, 73, 75, 0.1)
         end
         if e.drawState == "air" and e.move.vel.y < 0 and e.punchSpriteCountdown < 0 then
-                e.sprite = 71
+            e.sprite = 71
         end
         if e.drawState == "air" and e.move.vel.y > 0 and e.punchSpriteCountdown < 0 then
             e.sprite = 72
