@@ -13,7 +13,7 @@ return {
         [001] = function (self, e) 
             if e == self.owner then return end
             e.move.vel = e.move.vel + self.force
-            sound.hurt:play()
+            sfx("hurt")
         end
     }
 }

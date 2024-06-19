@@ -71,10 +71,8 @@ function round(n)
 	end 
 end
 
--- lazyest implementation ever
 function mid(a,b,c)
 	return math.max(math.min(a,b), math.min(b,c), math.min(a,c))
-	--return (table.sort{a,b,c})[2]
 end
 
 -- Animation function

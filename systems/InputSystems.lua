@@ -25,7 +25,7 @@ InputSystems.jumpPlayer = system({"move", "jump", "controls"},
             e.move.vel.y = e.move.vel.y - e.jump.speed * deltaTime
             e.grounded   = false
             e.drawState  = "air"
-            sound.jump:play()
+            sfx("jump")
         end
     end
 )
@@ -39,19 +39,19 @@ InputSystems.makePunchPlayer = system({"move", "punch", "controls", "grav"},
             local direction = Vec2(e.move.vel.x/math.abs(e.move.vel.x), love.keyboard.isDown(e.controls.jump) and -1 or 0)
 
             local punchbox   = nil
-            local punshReach = 2 -- a punch reach this distance from the character
+            local punchReach = 2 -- a punch reach this distance from the character
             local boxHeight  = 4 -- negative go down
 
             if e.flipH then
-                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 - punshReach, e.pos.y + direction.y * 8 + boxHeight)
+                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 - punchReach, e.pos.y + direction.y * 8 + boxHeight)
             else
-                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 + punshReach, e.pos.y + direction.y * 8 + boxHeight)
+                punchbox  = world:spawn("punchbox", e.pos.x + e.move.vel.x * 2 + punchReach, e.pos.y + direction.y * 8 + boxHeight)
             end
             punchbox.force  = e.punch.force * Vec2(direction.x, 1)
             punchbox.owner  = e
-            punchbox.move   = e.move
+            --punchbox.move   = e.move  > makes punches collide with walls
             e.drawState     = "punch"
-            sound.punch:play()
+            sfx("punch")
             e.punchSpriteCountdown = 7
 
             e.punch.cooldown = e.punch.cooldown_total

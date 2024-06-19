@@ -141,14 +141,9 @@ function love.load()
     stage = Stage.load("test")
 
     -- Load Sounds
-    sound = {}
-    sound.jump  = love.audio.newSource("sound/jump.wav", "static")
-    
-    sound.punch = love.audio.newSource("sound/punch.wav", "static")
-    sound.punch:setVolume(0.5)
-
-    sound.hurt = love.audio.newSource("sound/hurt.wav", "static")   
-    sound.hurt:setVolume(0.4)
+    picoAddSfx("jump", "sfx/jump.wav")
+    picoAddSfx("punch", "sfx/punch.wav", 0.5)
+    picoAddSfx("hurt", "sfx/hurt.wav", 0.5)
 
     -- Load players
     local p1 = world:spawn("test_player", pickRandom(stage.respawn_points))
@@ -181,10 +176,10 @@ function love.draw()
 
     stage:drawTiles()
     Systems.Render.renderSprites(world)
-    Systems.Render.renderCollision(world)
 
     endCanvas()
-    love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 1, 1)
+    
+    if DEBUG then love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 1, 1) end
 end
 
 function love.update(dt)
@@ -196,7 +191,7 @@ function love.update(dt)
     Systems.Physics.applyFriction(world)
 
     Systems.Input.walkPlayer     (world)
-    Systems.Input.jumpPlayer     (world, dt)
+    Systems.Input.jumpPlayer     (world)
     Systems.Input.makePunchPlayer(world)
 
     Systems.Physics.applyCollisionEffects(world)

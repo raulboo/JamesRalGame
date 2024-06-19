@@ -67,13 +67,29 @@ function endCanvas()
     )
 end
 
+-- better way to handle a rotation of every sprite -> just inject it onto spr :DDD
+local _gr = 0
+function setEverythingRotation(rotation) _gr=rotation or 0 end
+
 function spr(idx, x, y, r, sx, sy, ox, oy) 
     assert(_loaded_spritesheet and _spritesheet_map, "Tried calling spr() with no spritesheet loaded")
 
-    love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y,  r, sx, sy, ox, oy)
+    love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y, _gr + r, sx, sy, ox, oy)
 end
 
 --function pal() _loaded_spritesheet:replacePixels() end
+
+local _sfx_list = {}
+
+function picoAddSfx(label, soundfile_path, volume)
+    assert(_sfx_list[label]==nil, "Tried overwriting an already existing sound: "..label)
+    _sfx_list[label] = love.audio.newSource(soundfile_path, "static")
+    _sfx_list[label]:setVolume(volume or 1)
+end
+
+function sfx(label)
+    _sfx_list[label]:play()
+end
 
 --function print() end
 
