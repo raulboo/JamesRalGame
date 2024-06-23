@@ -1,0 +1,136 @@
+###############################################################################################################
+#####  ProFi, a lua profiler. This profile was generated on: 06/23/24 10:26:07
+#####  ProFi is created by Luke Perkin 2012 under the MIT Licence, www.locofilm.co.uk
+#####  Version 1.2. Get the most recent version at this gist: https://gist.github.com/2838755
+###############################################################################################################
+
+| TOTAL TIME = 15.380000
+| FILE                                              : FUNCTION                                : LINE                : TIME        : RELATIVE    : CALLED      |
+| picoAPI.lua                                       : startCanvas                             :   53                : 4043.270    : 26289.14%   :     219     |
+| [love "callbacks.lua"]                            : anonymous                               :  144                : 15.235      : 99.06%      :     916     |
+| main.lua                                          : draw                                    :  173                : 2.102       : 13.67%      :     915     |
+| Stage.lua                                         : drawTiles                               :   36                : 1.899       : 12.35%      :     915     |
+| picoAPI.lua                                       : spr                                     :   74                : 0.782       : 5.08%       :  203130     |
+| main.lua                                          : update                                  :  188                : 0.524       : 3.41%       :     915     |
+| Stage.lua                                         : isSolidInArea                           :   63                : 0.302       : 1.96%       :    5573     |
+| ecs.lua                                           : deathOutsideBoudaries                   :    9                : 0.190       : 1.24%       :     915     |
+| systems/LifeSystems.lua                           : f                                       :    4                : 0.172       : 1.12%       :    1920     |
+| Stage.lua                                         : isSolidAt                               :   59                : 0.168       : 1.09%       :   47143     |
+| ecs.lua                                           : moveActorY                              :    9                : 0.124       : 0.81%       :     915     |
+| systems/PhysicsSystems.lua                        : f                                       :   43                : 0.120       : 0.78%       :    1830     |
+| Stage.lua                                         : getTileAt                               :   51                : 0.097       : 0.63%       :   47143     |
+| ecs.lua                                           : _has                                    :    1                : 0.086       : 0.56%       :   24829     |
+| picoAPI.lua                                       : endCanvas                               :   58                : 0.068       : 0.44%       :     915     |
+| ecs.lua                                           : renderSprites                           :    9                : 0.052       : 0.34%       :     915     |
+| ecs.lua                                           : moveActorX                              :    9                : 0.042       : 0.27%       :     915     |
+| systems/PhysicsSystems.lua                        : f                                       :    9                : 0.041       : 0.27%       :    1830     |
+| ecs.lua                                           : jumpPlayer                              :    9                : 0.035       : 0.23%       :     915     |
+| picoAPI.lua                                       : loadPicoSpritesheet                     :   29                : 0.034       : 0.22%       :       1     |
+| systems/RenderSystems.lua                         : f                                       :    6                : 0.031       : 0.20%       :    1830     |
+| ecs.lua                                           : makePunchPlayer                         :    9                : 0.029       : 0.19%       :     915     |
+| utilities.lua                                     : __mul                                   :    2                : 0.024       : 0.16%       :   11165     |
+| input.lua                                         : isPressed                               :    5                : 0.022       : 0.14%       :    3144     |
+| systems/InputSystems.lua                          : f                                       :   23                : 0.019       : 0.12%       :    1830     |
+| ecs.lua                                           : walkPlayer                              :    9                : 0.018       : 0.12%       :     915     |
+| ecs.lua                                           : applyCollisionEffects                   :    9                : 0.018       : 0.12%       :     915     |
+| ecs.lua                                           : pullGravity                             :    9                : 0.015       : 0.10%       :     915     |
+| ecs.lua                                           : die                                     :    9                : 0.013       : 0.08%       :     915     |
+| utilities.lua                                     : __add                                   :    2                : 0.013       : 0.08%       :    7922     |
+| systems/InputSystems.lua                          : f                                       :   35                : 0.013       : 0.08%       :    1830     |
+| ecs.lua                                           : decay                                   :    9                : 0.012       : 0.08%       :     915     |
+| ecs.lua                                           : respawn                                 :    9                : 0.010       : 0.07%       :     915     |
+| utilities.lua                                     : __sub                                   :    2                : 0.010       : 0.07%       :    6887     |
+| ecs.lua                                           : applyFriction                           :    9                : 0.009       : 0.06%       :     915     |
+| utilities.lua                                     : Vec2                                    :    2                : 0.009       : 0.06%       :    3719     |
+| systems/InputSystems.lua                          : f                                       :    8                : 0.008       : 0.05%       :    1830     |
+| utilities.lua                                     : animationPlayer                         :   82                : 0.007       : 0.05%       :    1256     |
+| input.lua                                         : resetKeyStates                          :   30                : 0.006       : 0.04%       :    3144     |
+| systems/PhysicsSystems.lua                        : f                                       :   93                : 0.004       : 0.03%       :      90     |
+| Stage.lua                                         : isOutOfBounds                           :   79                : 0.004       : 0.03%       :   11141     |
+| systems/PhysicsSystems.lua                        : f                                       :   81                : 0.003       : 0.02%       :    1830     |
+| utilities.lua                                     : isBoxInBox                              :   18                : 0.002       : 0.01%       :     180     |
+| Stage.lua                                         : load                                    :    8                : 0.001       : 0.01%       :       1     |
+| picoAPI.lua                                       : picoAddSfx                              :   84                : 0.001       : 0.01%       :       3     |
+| systems/LifeSystems.lua                           : f                                       :   26                : 0.001       : 0.01%       :       3     |
+| World.lua                                         : spawn                                   :   14                : 0.001       : 0.01%       :      23     |
+| [C]                                               : isActive                                :   -1                : 0.000       : 0.00%       :     915     |
+| [love "callbacks.lua"]                            : anonymous                               :   43                : 0.000       : 0.00%       :      36     |
+| libraries/ProFi.lua                               : stop                                    :   68                : 0.000       : 0.00%       :       1     |
+| [love "callbacks.lua"]                            : anonymous                               :   94                : 0.000       : 0.00%       :       2     |
+| libraries/ProFi.lua                               : shouldReturn                            :  160                : 0.000       : 0.00%       :       1     |
+| main.lua                                          : quit                                    :  209                : 0.000       : 0.00%       :       1     |
+| [C]                                               : origin                                  :   -1                : 0.000       : 0.00%       :     915     |
+| systems/LifeSystems.lua                           : f                                       :   20                : 0.000       : 0.00%       :      21     |
+| [C]                                               : clear                                   :   -1                : 0.000       : 0.00%       :    1830     |
+| [C]                                               : sleep                                   :   -1                : 0.000       : 0.00%       :     915     |
+| systems/PhysicsSystems.lua                        : f                                       :   87                : 0.000       : 0.00%       :    1314     |
+| [C]                                               : present                                 :   -1                : 0.000       : 0.00%       :     915     |
+| [C]                                               : print                                   :   -1                : 0.000       : 0.00%       :     915     |
+| [C]                                               : tostring                                :   -1                : 0.000       : 0.00%       :     915     |
+| [love "callbacks.lua"]                            : anonymous                               :   31                : 0.000       : 0.00%       :      67     |
+| [love "callbacks.lua"]                            : anonymous                               :   34                : 0.000       : 0.00%       :      67     |
+| [love "callbacks.lua"]                            : anonymous                               :   37                : 0.000       : 0.00%       :      44     |
+| entities/101-punchbox.lua                         : anonymous                               :    0                : 0.000       : 0.00%       :       1     |
+| [C]                                               : abs                                     :   -1                : 0.000       : 0.00%       :      18     |
+| [C]                                               : getBackgroundColor                      :   -1                : 0.000       : 0.00%       :     915     |
+| [C]                                               : getFPS                                  :   -1                : 0.000       : 0.00%       :     915     |
+| [C]                                               : getWidth                                :   -1                : 0.000       : 0.00%       :    3660     |
+| [C]                                               : max                                     :   -1                : 0.000       : 0.00%       :      90     |
+| [C]                                               : play                                    :   -1                : 0.000       : 0.00%       :      40     |
+| World.lua                                         : remove                                  :   28                : 0.000       : 0.00%       :      21     |
+| [C]                                               : getHeight                               :   -1                : 0.000       : 0.00%       :    3660     |
+| systems/LifeSystems.lua                           : f                                       :   10                : 0.000       : 0.00%       :      90     |
+| entities/101-punchbox.lua                         : effect                                  :   13                : 0.000       : 0.00%       :     100     |
+| [C]                                               : setCanvas                               :   -1                : 0.000       : 0.00%       :    1830     |
+| [C]                                               : setColor                                :   -1                : 0.000       : 0.00%       :    2745     |
+| [C]                                               : draw                                    :   -1                : 0.000       : 0.00%       :  204045     |
+| picoAPI.lua                                       : sfx                                     :   90                : 0.000       : 0.00%       :      40     |
+| libraries/ProFi.lua                               : startHooks                              :  195                : 0.000       : 0.00%       :       0     |
+| utilities.lua                                     : __sub                                   :    6                : 0.000       : 0.00%       :    6887     |
+| [C]                                               : ipairs                                  :   -1                : 0.000       : 0.00%       :   25745     |
+| [C]                                               : (for generator)                         :   -1                : 0.000       : 0.00%       :  628949     |
+| utilities.lua                                     : tableMap                                :   54                : 0.000       : 0.00%       :       1     |
+| [C]                                               : type                                    :   -1                : 0.000       : 0.00%       :   11539     |
+| utilities.lua                                     : __mul                                   :    7                : 0.000       : 0.00%       :   11165     |
+| Stage.lua                                         : f                                       :   21                : 0.000       : 0.00%       :       3     |
+| [C]                                               : newSource                               :   -1                : 0.000       : 0.00%       :       3     |
+| utilities.lua                                     : f                                       :    2                : 0.000       : 0.00%       :       3     |
+| utilities.lua                                     : pickRandom                              :   62                : 0.000       : 0.00%       :       5     |
+| [C]                                               : setVolume                               :   -1                : 0.000       : 0.00%       :       3     |
+| [C]                                               : random                                  :   -1                : 0.000       : 0.00%       :       5     |
+| [C]                                               : setmetatable                            :   -1                : 0.000       : 0.00%       :   29697     |
+| [C]                                               : anonymous                               :   -1                : 0.000       : 0.00%       :      12     |
+| [C]                                               : newImage                                :   -1                : 0.000       : 0.00%       :       1     |
+| libraries/ProFi.lua                               : start                                   :   50                : 0.000       : 0.00%       :       0     |
+| [C]                                               : getTime                                 :   -1                : 0.000       : 0.00%       :       2     |
+| stages/001-test-stage.lua                         : anonymous                               :    0                : 0.000       : 0.00%       :       1     |
+| [C]                                               : getDimensions                           :   -1                : 0.000       : 0.00%       :       1     |
+| [C]                                               : floor                                   :   -1                : 0.000       : 0.00%       :  300944     |
+| [C]                                               : assert                                  :   -1                : 0.000       : 0.00%       :  203134     |
+| [C]                                               : require                                 :   -1                : 0.000       : 0.00%       :      21     |
+| [C]                                               : newQuad                                 :   -1                : 0.000       : 0.00%       :    4096     |
+| utilities.lua                                     : __add                                   :    5                : 0.000       : 0.00%       :    7922     |
+| entities/001-test_player.lua                      : anonymous                               :    0                : 0.000       : 0.00%       :       1     |
+| [C]                                               : pairs                                   :   -1                : 0.000       : 0.00%       :   15246     |
+| [C]                                               : min                                     :   -1                : 0.000       : 0.00%       :   11895     |
+| utilities.lua                                     : mid                                     :   74                : 0.000       : 0.00%       :    3660     |
+| [love "callbacks.lua"]                            : anonymous                               :   40                : 0.000       : 0.00%       :       1     |
+| [love "callbacks.lua"]                            : anonymous                               :   91                : 0.000       : 0.00%       :       1     |
+| [C]                                               : mid                                     :   -1                : 0.000       : 0.00%       :    3660     |
+| [C]                                               : round                                   :   -1                : 0.000       : 0.00%       :    3660     |
+| utilities.lua                                     : round                                   :   66                : 0.000       : 0.00%       :    3660     |
+| libraries/ProFi.lua                               : stopHooks                               :  199                : 0.000       : 0.00%       :       1     |
+| [C]                                               : isDown                                  :   -1                : 0.000       : 0.00%       :    7737     |
+| utilities.lua                                     : clone                                   :   41                : 0.000       : 0.00%       :     117     |
+| [love "callbacks.lua"]                            : anonymous                               :   97                : 0.000       : 0.00%       :       1     |
+| [C]                                               : pump                                    :   -1                : 0.000       : 0.00%       :     916     |
+| main.lua                                          : load                                    :  140                : 0.000       : 0.00%       :       0     |
+| [C]                                               : clone                                   :   -1                : 0.000       : 0.00%       :     117     |
+| [C]                                               : getmetatable                            :   -1                : 0.000       : 0.00%       :     117     |
+| [love "wrap_Event.lua"]                           : poll                                    :   25                : 0.000       : 0.00%       :     916     |
+| [C]                                               : step                                    :   -1                : 0.000       : 0.00%       :     916     |
+| [love "boot.lua"]                                 : anonymous                               :  355                : 0.000       : 0.00%       :       0     |
+| [love "callbacks.lua"]                            : anonymous                               :  135                : 0.000       : 0.00%       :       0     |
+| [C]                                               : xpcall                                  :   -1                : 0.000       : 0.00%       :     916     |
+| [C]                                               : yield                                   :   -1                : 0.000       : 0.00%       :     916     |
+| [C]                                               : sethook                                 :   -1                : 0.000       : 0.00%       :       1     |
