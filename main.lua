@@ -120,6 +120,7 @@ math.randomseed(os.time())
 
 World = require("World")
 Stage = require("Stage")
+ProFi = require "libraries.ProFi"
 
 DebugSystems = require("debug.DebugSystems")
 
@@ -137,6 +138,8 @@ stage = nil
 
 
 function love.load()
+    ProFi:start()
+
     loadPicoSpritesheet("images/spriteSheet.png", TILE_SIZE, TILE_SIZE)
     stage = Stage.load("test")
 
@@ -200,4 +203,12 @@ function love.update(dt)
     Systems.Life.deathOutsideBoudaries (world)
     Systems.Life.respawn               (world)
     Systems.Life.die                   (world)
+    
 end
+
+function love.quit()
+    ProFi:stop()
+	ProFi:writeReport( 'MyProfilingReport.txt' )
+end
+
+    
