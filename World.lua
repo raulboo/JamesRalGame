@@ -25,6 +25,7 @@ function World:spawn(label_or_prototype, spawn_point_or_x, y)
     return new_entity
 end
 
+
 function World:remove(entity)
     self[entity.uuid] = nil
 end

@@ -50,13 +50,34 @@ function clone(tbl)
 	return setmetatable(cp, getmetatable(tbl))
 end
 
--- Basically applies the function "f" to all elements of the table
+function contains(tbl, el)
+	for _,v in pairs(tbl) do 
+		if v==el then return true end
+	end
+	return false
+end
+
+-- Basically returns a softclone in which is applied the function "f" to all elements of the table
 function tableMap(table, f)
 	local new_table = {}
-	for i,v in ipairs(table) do
-		new_table[i] = f(v)
+	for k,v in pairs(table) do
+		new_table[k] = f(v)
 	end
 	return new_table
+end
+
+function tableFilter(table, f)
+	local filtered_table = {}
+	for k,v in pairs(table) do 
+		if f(v,k) then filtered_table[k] = v end
+	end 
+	return filtered_table
+end 
+
+function tableFindFirst(table, f)
+	for _,v in pairs(table) do 
+		if f(v) then return v end
+	end 
 end
 
 function pickRandom(table)
@@ -83,3 +104,43 @@ function animationPlayer(entity, startFrame, EndFrame, frameSpeed)
 	entity.sprite = startFrame + math.floor(animation.frame % (EndFrame - startFrame))
 	animation.frame = animation.frame + frameSpeed
 end
+
+------------------------------------------------------------
+-- KEYBOARD FUNCTIONS
+------------------------------------------------------------
+
+local keyStates = {}
+
+-- detects one-time key presses
+love.keyboard.isPressed = function(k)
+    love.keyboard.resetKeyStates()
+    local now = love.keyboard.isDown(k)
+    if keyStates[k] then
+        local last = keyStates[k].last
+        keyStates[k].now = now
+        return now and not last
+    else
+        keyStates[k] = {now = now, last = false}
+        return now
+    end
+end
+
+-- detects one-time key releases.
+love.keyboard.isReleased = function(k)
+    local now = love.keyboard.isDown(k)
+    if keyStates[k] then
+        local last = keyStates[k].last
+        keyStates[k].now = now
+        return not now and last
+    else
+        keyStates[k] = {now = now, last = false}
+        return now
+    end
+end
+
+-- complementar function for the two above.
+love.keyboard.resetKeyStates = function()
+    for k, _ in pairs(keyStates) do
+        keyStates[k].last = keyStates[k].now
+    end
+end 

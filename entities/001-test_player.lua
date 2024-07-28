@@ -1,7 +1,7 @@
 return {
-    type    = "player",
-    type_id = 001,
-    player_controlling = nil,
+    type       = "player",
+    type_id    = 001,
+    player_idx = nil,
 
     pos       = nil,
     sprite    = 64,
@@ -9,11 +9,14 @@ return {
     punchSpriteCountdown = 0,
     flipH  = false,
 
+    hit_by_player_last = nil, 
+
     grav = 0.2,
 
     move = { 
         vel       = Vec2(0, 0),
-        max_vel	  = Vec2(3, 5),
+        min_vel   = Vec2(-3,-10), --upwards, leftwards
+        max_vel	  = Vec2( 3, 5), --downwards, rightwards
         remainder = Vec2(0, 0),
     },
 
@@ -41,6 +44,7 @@ return {
         walk_right = "right",
         jump       = "up",
         punch      = ",",
-        special    = "."
+        special    = ".",
+        cards      = {"8","9","0"}
     }
 }

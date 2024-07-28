@@ -102,7 +102,6 @@ local function _test(foo) return foo+1 end
 require("ecs")
 require("utilities")
 require("picoAPI")
-require("input")
 
 -- GLOBAL VARIABLES --------------------------------
 
@@ -129,6 +128,7 @@ Systems = {
     Physics = require("systems.PhysicsSystems"),
     Input   = require("systems.InputSystems"),
     Life    = require("systems.LifeSystems"),
+    Card    = require("systems.CardSystems"),
 }
 
 --------------------------------
@@ -138,9 +138,14 @@ stage = nil
 
 
 function love.load()
+    -- Performance profiler start
     ProFi:start()
 
+    -- Load graphics
     loadPicoSpritesheet("images/spriteSheet.png", TILE_SIZE, TILE_SIZE)
+    --loaded_card = love.graphics.newImage("images/card.png")
+
+    -- Load stage
     stage = Stage.load("test")
 
     -- Load Sounds
@@ -155,9 +160,10 @@ function love.load()
         walk_right = "right",
         jump       = "up",
         punch      = ",",
-        special    = "."
+        special    = ".",
+        cards      = {"8","9","0"},
     }
-    p1.player_controlling = 1
+    p1.player_idx = 1
 
     local p2 = world:spawn("test_player", pickRandom(stage.respawn_points))
     p2.controls = {
@@ -165,9 +171,10 @@ function love.load()
         walk_right = "d",
         jump       = "w",
         punch      = "f",
-        special    = "g"
+        special    = "g",
+        cards      = {"1","2","3"}
     }
-    p1.player_controlling = 2
+    p2.player_idx = 2
 end
 
 function love.draw()
@@ -179,6 +186,8 @@ function love.draw()
 
     stage:drawTiles()
     Systems.Render.renderSprites(world)
+
+    Systems.Card.displayChoice  (world)
 
     endCanvas()
     
@@ -207,6 +216,7 @@ function love.update(dt)
 end
 
 function love.quit()
+    -- Performance profiler stop
     ProFi:stop()
 	ProFi:writeReport( 'MyProfilingReport.txt' )
 end

@@ -13,6 +13,7 @@ return {
         [001] = function (self, e) 
             if e == self.owner then return end
             e.move.vel = e.move.vel + self.force
+            e.hit_by_player_last = self.owner.player_idx
             sfx("hurt")
         end
     }

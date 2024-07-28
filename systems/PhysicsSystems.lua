@@ -7,7 +7,7 @@ local PhysicsSystems = {}
 
 PhysicsSystems.moveActorX = system({"pos", "move", "aabb"},
     function(e)    
-        e.move.vel.x = mid(-e.move.max_vel.x, e.move.vel.x, e.move.max_vel.x)
+        e.move.vel.x = mid(e.move.min_vel.x, e.move.vel.x, e.move.max_vel.x)
 
         local dx = round(e.move.vel.x)
 
@@ -41,7 +41,7 @@ PhysicsSystems.moveActorX = system({"pos", "move", "aabb"},
 
 PhysicsSystems.moveActorY = system({"pos", "move", "aabb"},
     function(e)
-        e.move.vel.y = mid(-e.move.max_vel.y, e.move.vel.y, e.move.max_vel.y)
+        e.move.vel.y = mid(e.move.min_vel.y, e.move.vel.y, e.move.max_vel.y)
 
         local dy = round(e.move.vel.y)
 
