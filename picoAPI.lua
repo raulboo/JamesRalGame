@@ -71,10 +71,17 @@ end
 local _gr = 0
 function setEverythingRotation(rotation) _gr=rotation or 0 end
 
-function spr(idx, x, y, r, sx, sy, ox, oy) 
-    assert(_loaded_spritesheet and _spritesheet_map, "Tried calling spr() with no spritesheet loaded")
+function spr(idx, x, y, flip_h, flip_v, scale)--, r, sx, sy, ox, oy) 
+    --r=r or 0; sx=sx or 1;  sy=sy or 1;  ox=ox or 0;  oy=oy or 0;
+    scale = scale or 1
+    local sx = scale * (flip_h and -1 or 1)
+    local sy = scale * (flip_v and -1 or 1)
+    local ox = (flip_h and TILE_SIZE or 0)
 
-    love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y, _gr + r, sx, sy, ox, oy)
+    assert(_loaded_spritesheet and _spritesheet_map, "Tried calling spr() with no spritesheet loaded")
+    love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y, _gr, sx, sy, ox, 0)
+
+    --love.graphics.draw(_loaded_spritesheet, _spritesheet_map[idx], x, y, _gr + r, sx, sy, ox, oy)
 end
 
 --function pal() _loaded_spritesheet:replacePixels() end

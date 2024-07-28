@@ -8,6 +8,7 @@ return {
     drawState = "grounded",
     punchSpriteCountdown = 0,
     flipH  = false,
+    scale  = 1,
 
     hit_by_player_last = nil, 
 
@@ -43,6 +44,7 @@ return {
         walk_left  = "left",
         walk_right = "right",
         jump       = "up",
+        down       = "down",
         punch      = ",",
         special    = ".",
         cards      = {"8","9","0"}

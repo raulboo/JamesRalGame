@@ -159,6 +159,7 @@ function love.load()
         walk_left  = "left",
         walk_right = "right",
         jump       = "up",
+        down       = "down",
         punch      = ",",
         special    = ".",
         cards      = {"8","9","0"},
@@ -170,6 +171,7 @@ function love.load()
         walk_left  = "a",
         walk_right = "d",
         jump       = "w",
+        down       = "s",
         punch      = "f",
         special    = "g",
         cards      = {"1","2","3"}

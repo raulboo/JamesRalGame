@@ -7,33 +7,44 @@ local _cards = {
     {
         display_name   = "Pulo Absurdo",
         callEffect     = function(e)
-            e.jump.speed = e.jump.speed * 5
+            e.jump.speed = e.jump.speed * 3
+        end
+    },
+    {
+        display_name   = "Todo mundo Gigante",
+        callEffect     = function(e)
+            e.aabb  = e.aabb * 3
+            e.pos.y = e.pos.y - e.aabb.y/2
+            e.scale = 3
+            e.punch.force = e.punch.force * 3
+        end
+    },
+    {
+        display_name   = "Controles Invertidos",
+        callEffect     = function(e)
+            local original_controls = clone(e.controls)
+            e.controls.walk_left  = original_controls.walk_right 
+            e.controls.walk_right = original_controls.walk_left 
+            e.controls.jump       = original_controls.down 
+            e.controls.down       = original_controls.jump 
+            e.controls.punch      = original_controls.special 
+            e.controls.special    = original_controls.punch
         end
     }
+
 }
 
 -- todo: add pseudorandomness
 local function _getNewCards()
     local first_card = math.random(#_cards)
-    --while (not second_card) or (second_card == first_card) then second_card = math.random(#_cards) end 
-    --while (not third_card) or (third_card == first_card) or (third_card == second_card) then third_card = math.random(#_cards) end 
-    return {first_card}--, second_card, third_card}
+    while (not second_card) or (second_card == first_card) do second_card = math.random(#_cards) end 
+    while (not third_card) or (third_card == first_card) or (third_card == second_card) do third_card = math.random(#_cards) end 
+    return {first_card, second_card, third_card}
 end
 
 local function _applyCardOfChoice(idx)
     local all_players = tableFilter(world, function(e) return e.type=="player" end)
     tableMap(all_players, _cards[idx].callEffect)
-
-    for _,v in pairs(world) do assert(v.jump.speed==1500) end
-    --[[
-    for _,v in pairs(world) do
-        if v.type == "player" then
-            assert(false)
-            _cards[idx].callEffect(v)
-            assert(v.jump.speed == 1500)
-        end
-    end
-    ]]--
 end
 
 local _displayed_cards = nil
